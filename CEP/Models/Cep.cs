@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace CEP.Models
@@ -36,5 +37,8 @@ namespace CEP.Models
 
         [JsonPropertyName("siafi")]
         public string Siafi { get; set; }
+
+        [NotMapped]
+        public string Mensagem { get; set; }
     }
 }

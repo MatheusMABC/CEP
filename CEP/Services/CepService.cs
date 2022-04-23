@@ -26,12 +26,15 @@ namespace CEP.Services
                     var teste = JsonSerializer.Deserialize<ExpandoObject>(await httpProdutoResponse.Content.ReadAsStringAsync());
 
                     cepObjeto = JsonSerializer.Deserialize<Models.Cep>(await httpProdutoResponse.Content.ReadAsStringAsync());
-                   await Create(cepObjeto);
+                    cepObjeto.Mensagem = "Retornou Cep";
+                    await Create(cepObjeto);
+                }
+                else
+                {
+                    cepObjeto.Mensagem = "Não retornou Cep com o valor digitado: " + cep;
                 }
             }
             return cepObjeto;
-
-
 
         }
 
@@ -39,11 +42,11 @@ namespace CEP.Services
         {
             try
             {
-                
+
 
                 if (cep.Id == 0)
                 {
-                 
+
                     await _context.AddAsync(cep);
                 }
                 else
